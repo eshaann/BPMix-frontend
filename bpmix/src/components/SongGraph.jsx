@@ -7,9 +7,7 @@ export default function SongGraph({ songs }) {
 
   useEffect(() => {
     if (!containerRef.current) return;
-
-    // Position each song horizontally with equal spacing
-    const spacing = 200;
+    const spacing = Math.max(300, 1000 / songs.length);
     const nodes = new DataSet(
       songs.map((song, i) => {
         const artworkSrc = song.artwork

@@ -8,11 +8,13 @@ export default function App() {
 
   return (
     <div className="app">
-      <header className="navbar">🎧 BPMix - Smart Song Roadmap</header>
-      <main className="content">
-        <UploadForm setSongs={setSongs} />
-        {songs.length > 0 && <SongGraph songs={songs} />}
-      </main>
+      <div className="navbar">🎧 BPMix - Smart Song Roadmap</div>
+      <div className="content">
+        <div className="main-container">
+          {songs.length > 0 && <SongGraph songs={songs} />}
+          <UploadForm setSongs={setSongs} />
+        </div>
+      </div>
     </div>
   );
 }
