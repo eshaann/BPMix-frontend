@@ -7,7 +7,7 @@ export default function SongGraph({ songs }) {
 
   useEffect(() => {
     if (!containerRef.current) return;
-    const spacing = Math.max(300, 1000 / songs.length);
+    const spacing = Math.max(500, 1000 / songs.length);
     const nodes = new DataSet(
       songs.map((song, i) => {
         const artworkSrc = song.artwork
