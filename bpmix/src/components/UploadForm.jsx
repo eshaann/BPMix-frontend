@@ -35,11 +35,11 @@ const handleUpload = async () => {
   
     try {
       // Step 1: Upload and analyze files
-      const uploadRes = await axios.post('http://3.22.81.181/api/upload', formData);
+      const uploadRes = await axios.post('http://3.149.164.253/upload', formData);
       const analyzed = uploadRes.data;
   
       // Step 2: Get optimized order
-      const orderRes = await axios.post('http://3.22.81.181/api/order', analyzed);
+      const orderRes = await axios.post('http://3.149.164.253/order', analyzed);
   
       // Step 3: Set the sorted songs for rendering
       setSongs(orderRes.data);
