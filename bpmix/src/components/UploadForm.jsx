@@ -31,9 +31,9 @@ export default function UploadForm({ setSongs }) {
     files.forEach(file => formData.append('files', file));
 
     try {
-      const uploadRes = await axios.post('http://3.149.164.253:5000/upload', formData);
+      const uploadRes = await axios.post('/api/upload', formData);
       const analyzed = uploadRes.data;
-      const orderRes = await axios.post('http://3.149.164.253:5000/order', analyzed);
+      const orderRes = await axios.post('/api/order', analyzed);
       setSongs(orderRes.data);
       setFiles([]);
     } catch (err) {
