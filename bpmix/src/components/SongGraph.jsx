@@ -6,7 +6,8 @@ export default function SongGraph({ songs }) {
   const networkRef = useRef(null);
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    if (!containerRef.current || songs.length === 0) return; // Add check for songs.length
+
     const spacing = Math.max(500, 1000 / songs.length);
     const nodes = new DataSet(
       songs.map((song, i) => {
@@ -30,7 +31,7 @@ export default function SongGraph({ songs }) {
           },
           margin: 12,
           size: 40,
-          x: i * spacing,
+          x: i * spacing, // Keep your initial positioning
           y: 0,
           borderWidth: 0,
         };
@@ -64,11 +65,12 @@ export default function SongGraph({ songs }) {
     const data = { nodes, edges };
 
     const options = {
+
       layout: {
         improvedLayout: false,
       },
       physics: {
-        enabled: false,
+        enabled: false, // Keep physics disabled for static positioning
       },
       interaction: {
         dragNodes: true,
@@ -137,7 +139,23 @@ export default function SongGraph({ songs }) {
     }
     networkRef.current = new Network(containerRef.current, data, options);
 
-  }, [songs]);
+    // Call fit() after the network is initialized
+    networkRef.current.fit({
+      animation: { // Optional: add a smooth animation to the fit action
+        duration: 500,
+        easingFunction: 'easeOutQuad'
+      }
+    });
+
+    // Clean up network on component unmount
+    return () => {
+      if (networkRef.current) {
+        networkRef.current.destroy();
+        networkRef.current = null;
+      }
+    };
+
+  }, [songs]); // Re-run effect when songs change
 
   return (
     <div
