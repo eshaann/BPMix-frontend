@@ -4,7 +4,6 @@ import axios from 'axios';
 export default function UploadForm({ setSongs }) {
   const [files, setFiles] = useState([]);
 
-
   const handleFileChange = (e) => {
     const newFiles = Array.from(e.target.files);
     setFiles((curr) => {
@@ -31,7 +30,6 @@ export default function UploadForm({ setSongs }) {
     const formData = new FormData();
     files.forEach(file => formData.append('files', file));
 
-
     try {
       const uploadRes = await axios.post('/api/upload', formData);
       const analyzed = uploadRes.data;
@@ -42,9 +40,6 @@ export default function UploadForm({ setSongs }) {
       alert("Upload/order failed. Check backend.");
       console.error(err);
     }
-
-
-
   };
 
   return (
@@ -56,7 +51,6 @@ export default function UploadForm({ setSongs }) {
           accept="audio/*"
           multiple
           onChange={handleFileChange}
-
         />
       </div>
       {files.length > 0 && (
@@ -72,6 +66,6 @@ export default function UploadForm({ setSongs }) {
       <button className="upload-btn" onClick={handleUpload} disabled={files.length === 0}>
         Upload
       </button>
-      </div>
+    </div>
   );
 }
