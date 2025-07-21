@@ -12,7 +12,7 @@ export default function SongGraph({ songs }) {
       songs.map((song, i) => {
         const artworkSrc = song.artwork
           ? `data:image/jpeg;base64,${song.artwork}`
-          : 'public/default.jpg';
+          : '/default.jpg';
 
         const label = `${song.title}\nArtist: ${song.artist || 'Unknown'}\nKey: ${song.key}\nBPM: ${song.bpm}`;
 
