@@ -85,7 +85,7 @@ export default function UploadForm({ setSongs }) {
         </div>
       )}
 
-      <style jsx>{`
+      <style>{`
         .spinner-container {
           margin-top: 20px;
           display: flex;
