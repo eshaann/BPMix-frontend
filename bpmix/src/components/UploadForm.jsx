@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import 'UploadForm.css'
 
 export default function UploadForm({ setSongs }) {
   const [files, setFiles] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const handleFileChange = (e) => {
     const newFiles = Array.from(e.target.files);
@@ -30,6 +32,7 @@ export default function UploadForm({ setSongs }) {
     const formData = new FormData();
     files.forEach(file => formData.append('files', file));
 
+    setLoading(true);
     try {
       const uploadRes = await axios.post('/api/upload', formData);
       const analyzed = uploadRes.data;
@@ -39,6 +42,8 @@ export default function UploadForm({ setSongs }) {
     } catch (err) {
       alert("Upload/order failed. Check backend.");
       console.error(err);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -51,21 +56,35 @@ export default function UploadForm({ setSongs }) {
           accept="audio/*"
           multiple
           onChange={handleFileChange}
+          disabled={loading}
         />
       </div>
+
       {files.length > 0 && (
         <ul className="file-list">
           {files.map((file, i) => (
             <li key={file.name + file.size}>
               {file.name} ({(file.size / 1024 / 1024).toFixed(2)} MB)
-              <button onClick={() => removeFile(i)}>Remove</button>
+              <button onClick={() => removeFile(i)} disabled={loading}>Remove</button>
             </li>
           ))}
         </ul>
       )}
-      <button className="upload-btn" onClick={handleUpload} disabled={files.length === 0}>
+
+      <button
+        className="upload-btn"
+        onClick={handleUpload}
+        disabled={files.length === 0 || loading}
+      >
         Upload
       </button>
+
+      {loading && (
+        <div className="spinner-container">
+          <div className="spinner"></div>
+          <p>Processing...</p>
+        </div>
+      )}
     </div>
   );
 }
