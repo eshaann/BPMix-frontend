@@ -20,6 +20,11 @@ body, html, #root {
   font-weight: bold;
 }
 
+h2{
+  text-align: center;
+  font-weight: bold;
+}
+
 .content {
   flex: 1;
   display: flex;
