@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './UploadForm.css'; 
 
 export default function UploadForm({ setSongs }) {
   const [files, setFiles] = useState([]);
@@ -37,7 +38,6 @@ export default function UploadForm({ setSongs }) {
       const analyzed = uploadRes.data;
       const orderRes = await axios.post('/api/order', analyzed);
       setSongs(orderRes.data);
-      setFiles([]);
     } catch (err) {
       alert("Upload/order failed. Check backend.");
       console.error(err);
@@ -56,6 +56,7 @@ export default function UploadForm({ setSongs }) {
           multiple
           onChange={handleFileChange}
           disabled={loading}
+          className="choose-files-input"
         />
       </div>
 
@@ -84,29 +85,6 @@ export default function UploadForm({ setSongs }) {
           <p>Processing...</p>
         </div>
       )}
-
-      <style>{`
-        .spinner-container {
-          margin-top: 20px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
-
-        .spinner {
-          border: 6px solid #f3f3f3;
-          border-top: 6px solid #3498db;
-          border-radius: 50%;
-          width: 40px;
-          height: 40px;
-          animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-        }
-      `}</style>
     </div>
   );
 }

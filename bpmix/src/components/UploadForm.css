@@ -1,20 +1,151 @@
+/* General container styling */
+.upload-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Nicer font */
+}
+
+/* Dropbox styling */
+.dropbox {
+  border: 2px dashed #ccc;
+  border-radius: 10px; /* Slightly more rounded */
+  padding: 30px;
+  text-align: center;
+  width: 80%;
+  cursor: pointer;
+  margin-bottom: 20px;
+  position: relative; /* Needed for positioning the file input */
+}
+
+.dropbox p {
+  margin: 0;
+  color: #666;
+  font-size: 1.1em;
+}
+
+/* Style the file input button (Choose Files) */
+.choose-files-input {
+  position: absolute; /* Make it cover the dropbox */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0; /* Hide the default input visual */
+  cursor: pointer;
+}
+
+/* Use a pseudo-element or a label to style the "Choose Files" button */
+.dropbox::after {
+  content: 'Choose Files';
+  display: inline-block;
+  background-color: #8a2be2; /* Purple color */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 15px; /* More rounded */
+  cursor: pointer;
+  margin-top: 15px;
+  font-weight: bold;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+}
+
+.dropbox:hover::after {
+  background-color: #6a1aab; /* Darker purple on hover */
+}
+
+/* File list styling */
+.file-list {
+  list-style: none;
+  padding: 0;
+  width: 80%;
+  margin-top: 15px;
+  border-top: 1px solid #eee;
+  padding-top: 15px;
+}
+
+.file-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  color: #333;
+}
+
+.file-list li:last-child {
+  border-bottom: none;
+}
+
+.file-list button {
+  background-color: #dc3545; /* Red for remove button */
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.file-list button:hover {
+  background-color: #c82333;
+}
+
+.file-list button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+/* Upload button styling */
+.upload-btn {
+  background-color: #28a745; /* Green color */
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 20px; /* More rounded */
+  cursor: pointer;
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-top: 20px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.upload-btn:hover {
+  background-color: #218838; /* Darker green on hover */
+  transform: translateY(-2px);
+}
+
+.upload-btn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Spinner styling */
 .spinner-container {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  .spinner {
-    border: 6px solid #f3f3f3;
-    border-top: 6px solid #3498db;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    animation: spin 1s linear infinite;
-  }
+.spinner {
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
 
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
