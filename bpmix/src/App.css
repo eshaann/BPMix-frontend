@@ -21,11 +21,7 @@ body, html, #root {
   color: #fff; 
 }
 
-h2 {
-  text-align: center;
-  font-weight: bold;
-  color: #fff; 
-}
+
 
 .content {
   flex: 1;

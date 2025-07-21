@@ -48,6 +48,7 @@ export default function UploadForm({ setSongs }) {
 
   return (
     <div className="upload-container">
+      <h2>Upload your mp3 files to generate a set order</h2>
       <div className="dropbox">
         <p>Drag & drop files here, or click below to select files</p>
         <input
