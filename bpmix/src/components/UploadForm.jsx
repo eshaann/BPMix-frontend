@@ -72,3 +72,6 @@ export default function UploadForm({ setSongs }) {
       <button className="upload-btn" onClick={handleUpload} disabled={files.length === 0}>
         Upload
       </button>
+      </div>
+  );
+}
