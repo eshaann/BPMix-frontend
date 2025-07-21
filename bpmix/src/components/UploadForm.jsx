@@ -3,6 +3,7 @@ import axios from 'axios';
 
 export default function UploadForm({ setSongs }) {
   const [files, setFiles] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const handleFileChange = (e) => {
     const newFiles = Array.from(e.target.files);
@@ -30,6 +31,7 @@ export default function UploadForm({ setSongs }) {
     const formData = new FormData();
     files.forEach(file => formData.append('files', file));
 
+    setLoading(true);
     try {
       const uploadRes = await axios.post('/api/upload', formData);
       const analyzed = uploadRes.data;
@@ -39,6 +41,9 @@ export default function UploadForm({ setSongs }) {
     } catch (err) {
       alert("Upload/order failed. Check backend.");
       console.error(err);
+    }
+    finally {
+      setLoading(false);
     }
   };
 
@@ -51,6 +56,7 @@ export default function UploadForm({ setSongs }) {
           accept="audio/*"
           multiple
           onChange={handleFileChange}
+          disabled={loading}
         />
       </div>
       {files.length > 0 && (
@@ -66,6 +72,34 @@ export default function UploadForm({ setSongs }) {
       <button className="upload-btn" onClick={handleUpload} disabled={files.length === 0}>
         Upload
       </button>
+      {loading && (
+        <div className="spinner-container">
+          <div className="spinner"></div>
+          <p>Processing...</p>
+        </div>
+      )}
+            <style jsx>{`
+        .spinner-container {
+          margin-top: 20px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .spinner {
+          border: 6px solid #f3f3f3;
+          border-top: 6px solid #3498db;
+          border-radius: 50%;
+          width: 40px;
+          height: 40px;
+          animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+      `}</style>
     </div>
   );
 }
