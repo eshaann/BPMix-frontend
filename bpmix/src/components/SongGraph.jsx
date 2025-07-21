@@ -11,8 +11,8 @@ export default function SongGraph({ songs }) {
     const nodes = new DataSet(
       songs.map((song, i) => {
         const artworkSrc = song.artwork
-          ? `data:image/jpeg;base64,${song.artwork}`
-          : '/default.jpg';
+          ? `data:image/png;base64,${song.artwork}`
+          : '/default.png';
 
         const label = `${song.title}\nArtist: ${song.artist || 'Unknown'}\nKey: ${song.key}\nBPM: ${song.bpm}`;
 
