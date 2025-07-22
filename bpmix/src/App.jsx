@@ -8,7 +8,7 @@ export default function App() {
 
   return (
     <div className="app">
-      <div className="navbar">🎧 BPMix - Smart Song Roadmap</div>
+      <div className="navbar">🎧 BPMix - DJ Set Order Generator</div>
       <div className="content">
         <div className="main-container">
           {songs.length > 0 && <SongGraph songs={songs} />}

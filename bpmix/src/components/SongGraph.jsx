@@ -76,6 +76,7 @@ export default function SongGraph({ songs }) {
       interaction: {
         dragNodes: true,
         dragView: true,
+        zoomView: true,
         hover: true,
         tooltipDelay: 0,
         dragEdges: true,
