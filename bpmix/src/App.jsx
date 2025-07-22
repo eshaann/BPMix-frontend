@@ -5,6 +5,13 @@ import './App.css';
 
 export default function App() {
   const [songs, setSongs] = useState([]);
+  const graphRef = useRef(null);
+
+  useEffect(() => {
+    if (songs.length > 0 && graphRef.current) {
+      graphRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [songs]);
 
   return (
     <div className="app">
