@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import UploadForm from './components/UploadForm';
 import SongGraph from './components/SongGraph';
 import './App.css';
