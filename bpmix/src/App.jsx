@@ -6,6 +6,15 @@ import './App.css';
 export default function App() {
   const [songs, setSongs] = useState([]);
 
+  useEffect(() => {
+    if (songs.length > 0) {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+  }, [songs]);
+
   return (
     <div className="app">
       <div className="navbar">🎧 BPMix - DJ Set Order Generator</div>
