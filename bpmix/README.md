@@ -1,4 +1,5 @@
 # Page at https://bpmixdj.com/
+See API repo at https://github.com/eshaann/BPMix-api
 
 # React + Vite
 
