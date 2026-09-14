@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './UploadForm.css'; 
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
+
 export default function UploadForm({ setSongs }) {
   const [files, setFiles] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -34,9 +36,9 @@ export default function UploadForm({ setSongs }) {
 
     setLoading(true);
     try {
-      const uploadRes = await axios.post('/api/upload', formData);
+      const uploadRes = await axios.post(`${API_BASE_URL}/upload`, formData);
       const analyzed = uploadRes.data;
-      const orderRes = await axios.post('/api/order', analyzed);
+      const orderRes = await axios.post(`${API_BASE_URL}/order`, analyzed);
       setSongs(orderRes.data);
     } catch (err) {
       alert("Upload/order failed. Check backend.");
