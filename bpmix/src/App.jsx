@@ -17,7 +17,28 @@ export default function App() {
 
   return (
     <div className="app">
-      <div className="navbar">🎧 BPMix - DJ Set Order Generator</div>
+      <nav className="navbar">
+        <span className="navbar-title">🎧 BPMix - DJ Set Order Generator</span>
+        <div className="navbar-links">
+          <a 
+            href="https://github.com/eshaann/BPMix-frontend" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="nav-link"
+          >
+            Frontend Repo
+          </a>
+          <a 
+            href="https://github.com/eshaann/BPMix-api" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="nav-link highlight"
+          >
+            API Repo ⚡
+          </a>
+        </div>
+      </nav>
+
       <div className="content">
         <div className="main-container">
           {songs.length > 0 && <SongGraph songs={songs} />}
